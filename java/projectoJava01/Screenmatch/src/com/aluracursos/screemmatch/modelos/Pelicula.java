@@ -5,6 +5,10 @@ import com.aluracursos.screemmatch.calculos.Clasificacion;
 public class Pelicula extends Titulo implements Clasificacion {
     private String director;
 
+    public Pelicula(String nombre, int fechaDeLanzamiento){
+        super(nombre, fechaDeLanzamiento);
+    }
+
     public void setDirector(String director) {
         this.director = director;
     }
