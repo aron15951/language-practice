@@ -3,21 +3,61 @@
 //cout => c = Console, OUTPUT = Salida
 //endl => salto de linea = salto de linea en la impresion de console
 
-#include <iostream>
+#include <iostream>  // Librería estándar para entrada/salida en C++
 using namespace std;
 
 
 void convertirNumeroAHorasMinutosSegundos() {
     int numero;
-    cout << "Ingrese un número en segundos: ";
+    char unidad;
+    cout << "Ingrese un número: ";
     cin >> numero;
+    cout << "¿En qué unidad está el número? (h para horas, m para minutos, s para segundos): ";
+    cin >> unidad;
 
-    int horas = numero / 3600;                     // Calcula las horas
-    int minutos = (numero % 3600) / 60;            // Calcula los minutos restantes
-    int segundos = numero % 60;                     // Calcula los segundos restantes
+    int horas, minutos, segundos;
 
-    cout << numero << " segundos son equivalentes a: " << endl;
-    cout << horas << " horas, " << minutos << " minutos y " << segundos << " segundos." << endl;
+    switch(unidad) {
+        case 'h':
+        case 'H':
+            horas = numero;
+            minutos = horas * 60;
+            segundos = minutos * 60;
+            break;
+        case 'm':
+        case 'M':
+            minutos = numero;
+            horas = minutos / 60;
+            segundos = minutos * 60;
+            break;
+        case 's':
+        case 'S':
+            segundos = numero;
+            minutos = segundos / 60;
+            horas = minutos / 60;
+            break;
+        default:
+            cout << "Unidad no válida. Por favor, use h, m o s." << endl;
+            return;
+    }
+
+    cout << numero << " ";
+    switch(unidad) {
+        case 'h':
+        case 'H':
+            cout << "horas";
+            break;
+        case 'm':
+        case 'M':
+            cout << "minutos";
+            break;
+        case 's':
+        case 'S':
+            cout << "segundos";
+            break;
+    }
+    cout << " son equivalentes a: " << endl;
+    cout << horas << " horas, " << minutos % 60 << " minutos y " << segundos % 60 << " segundos." << endl;
 }
 
 void convertirAnosAMesesDiasHoras() {
@@ -27,7 +67,7 @@ void convertirAnosAMesesDiasHoras() {
 
     int meses = anos * 12;
     int dias = anos * 365; // Asumiendo años no bisiestos
-    int horas = dias * 24;
+    int horas = dias * 24*365;
 
     cout << anos << " años son equivalentes a: " << endl;
     cout << meses << " meses, " << dias << " días y " << horas << " horas." << endl;
@@ -72,12 +112,53 @@ void calcularSalarioSemanal() {
     cout << "El salario semanal es: $" << salarioSemanal << endl;
 }
 
+void cuentaRegresiva() { //solo realizara la tarea sin retornar un resultado
+    int n=0; //declaras la variable
+    cout << "Ingrese el número para la cuenta regresiva: "; //console int
+    cin >> n;
+
+    for (int i = n; i >= 0; i--) {
+        cout << i << endl;
+    }
+
+    cout <<"Cuenta regresica terminada"<< endl;  
+}
+
+void arbolNavidad() {
+    int altura = 0;
+    cout<<"Introduce la altura de nuestro arbolito"<<endl;
+    cin >> altura;
+    for (int i = 0; i < altura; i++) {
+        // Espacios antes de los asteriscos
+        for (int j = 0; j < altura - i - 1; j++) {
+            cout << " ";
+        }
+        // Asteriscos
+        for (int k = 0; k < 2 * i + 1; k++) {
+            cout << "*";
+        }
+        cout << endl;
+    }
+    // Tronco del árbol
+    for (int i = 0; i < altura / 3; i++) {
+        for (int j = 0; j < altura - 1; j++) {
+            cout << " ";
+        }
+        cout << "*" << endl;
+    }
+}
+
+
+
 int main() {
-    calcularPromedioNumeros(); //01
-    calcularSalarioSemanal(); //02
-    convertirNumeroAHorasMinutosSegundos(); //03
-    convertirAnosAMesesDiasHoras(); //04
-    calcularSumaAreasCuadrados(); //05
+    //calcularPromedioNumeros(); //01
+    //calcularSalarioSemanal(); //02
+    //convertirNumeroAHorasMinutosSegundos(); //03
+    //convertirAnosAMesesDiasHoras(); //04
+    //calcularSumaAreasCuadrados(); //05
+    //cuentaRegresiva();//06
+    arbolNavidad();//07
     
     return 0;
 }
+
